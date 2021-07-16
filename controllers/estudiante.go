@@ -91,7 +91,24 @@ func (c *EstudianteController) GetAll() {
 // @Failure 403 :id is not int
 // @router /:id [put]
 func (c *EstudianteController) Put() {
+	Idestudi := c.Ctx.Input.Param(":id")
+	var res map[string]interface{}
 
+	if err := request.GetJson(beego.AppConfig.String("UrlCrud")+"/estudiante/"+Idestudi, &res); err == nil {
+		c.Data["json"] = map[string]interface{}{"Success": true, "Status": "10", "Message": "Peticion completa", "Data": res}
+	} else {
+		logs.Error(err)
+		c.Abort("404 fallo")
+	}
+	/*var def = helpers.CalcularDefinitiva(res.nota_1, res.nota_2, res.nota_3)
+	valor := models.Estudiante{Id: id, nota_def: def}
+	if err := request.SendJson(beego.AppConfig.String("UrlCrud")+"/estudiante/"+Idestudi, &res, valor); err == nil {
+		c.Data["json"] = map[string]interface{}{"Success": true, "Status": "10", "Message": "Peticion completa", "Data": res}
+	} else {
+		logs.Error(err)
+		c.Abort("400")
+	}*/
+	c.ServeJSON()
 }
 
 // Delete ...
