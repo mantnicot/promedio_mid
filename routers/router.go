@@ -8,16 +8,15 @@
 package routers
 
 import (
-	"github.com/mantnicot/promedio_mid/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/mantnicot/promedio_mid/controllers/controllers"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/estudiante",
 			beego.NSInclude(
-				&controllers.ObjectController{},
+				&controllers.EstudianteController{},
 			),
 		),
 	)
