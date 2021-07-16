@@ -9,7 +9,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/mantnicot/promedio_mid/controllers/controllers"
+	"github.com/mantnicot/promedio_mid/controllers"
 )
 
 func init() {
